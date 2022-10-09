@@ -1,0 +1,135 @@
+apiVersion: v1
+kind: Template
+
+# ================ parameters for SSO ================
+parameters:
+  #  - name: SSO_HOST
+  #    #    value: sso.dev.ppod.cbr.ru
+  #    required: true
+  #  - name: SSO_CLIENT_ID
+  #    #    value: 69-frame-cloud-69
+  #    required: true
+  #  - name: SSO_CLIENT_SECRET
+  #    #    value: os6QHxdsGRLU2XR
+  #    required: true
+  #  # ================ DB parameters ================
+  #  - name: DATABASE_URL
+  #    required: true
+  #  - name: DATABASE_USER
+  #    required: true
+  #  - name: DATABASE_PASSWORD
+  #    required: true
+  #  - name: DB_DLL_STRATEGY
+  #    required: true
+  #  - name: DB_INITIALIZE
+  #    required: true
+  #  # ================ parameters for ABAC ================
+  #  - name: ABAC_AUTH_URL
+  #    required: true
+  #  - name: ABAC_AUTH_REALM_CODE
+  #    required: true
+  #  - name: ABAC_ADMIN_URL
+  #    required: true
+  #  - name: ABAC_ADMIN_TOKEN_NAME
+  #    required: true
+  #  - name: ABAC_ADMIN_TOKEN_VALUE
+  #    required: true
+  # ================ Code parameters ================
+  - name: PPOD_VERSION
+    #    value: ${PPOD_VERSION}
+    required: true
+  - name: PPOD_DOCKER_REGISTRY
+    #        value: adm.ppod.cbr.ru:5000
+    required: true
+
+objects:
+  # ================ frame-gateway-ui deployment ================
+  - apiVersion: v1
+    kind: DeploymentConfig
+    metadata:
+      name: leveldown-${PPOD_VERSION}
+    spec:
+      replicas: 1
+      selector:
+        deploymentconfig: leveldown-${PPOD_VERSION}
+      strategy:
+        type: Recreate
+      template:
+        metadata:
+          labels:
+            deploymentconfig: leveldown-${PPOD_VERSION}
+        spec:
+          containers:
+            - image: ${PPOD_DOCKER_REGISTRY}/leveldown:${PPOD_VERSION}
+              imagePullPolicy: Always
+              name: leveldown-img-${PPOD_VERSION}
+              ports:
+                - containerPort: 9018
+                  protocol: TCP
+              env:
+                - name: SSO_HOST
+                  value: ${SSO_HOST}
+                - name: SSO_CLIENT_ID
+                  value: ${SSO_CLIENT_ID}
+                - name: SSO_CLIENT_SECRET
+                  value: ${SSO_CLIENT_SECRET}
+                - name: SERVER_PORT
+                  value: "9018"
+                - name: REST_HOST
+                  value: server-service-${PPOD_VERSION}
+                - name: REST_PORT
+                  value: "9018"
+                # ================ parameters for DB ================
+                - name: DATABASE_URL
+                  value: ${DATABASE_URL}
+                - name: DATABASE_USER
+                  value: ${DATABASE_USER}
+                - name: DATABASE_PASSWORD
+                  value: ${DATABASE_PASSWORD}
+                # ================ parametrs for Kafka ===============
+                - name: KAFKA_ADDRESS
+                  value: ${KAFKA_ADDRESS}
+                # ================ parameters for Security logging ==================
+                - name: SPLUNK_HOST
+                  value: ${SPLUNK_HOST}
+                - name: SPLUNK_PORT
+                  value: ${SPLUNK_PORT}
+                - name: SPLUNK_PROFILING
+                  value: ${SPLUNK_PROFILING}
+                - name: SPLUNK_HEARTBEAT
+                  value: ${SPLUNK_HEARTBEAT}
+                - name: SPLUNK_POOL_SIZE_MIN
+                  value: ${SPLUNK_POOL_SIZE_MIN}
+                - name: SPLUNK_POOL_SIZE_MAX
+                  value: ${SPLUNK_POOL_SIZE_MAX}
+                - name: SPLUNK_POOL_SIZE_IDLE
+                  value: ${SPLUNK_POOL_SIZE_IDLE}
+      triggers:
+        - type: ConfigChange
+
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      name: leveldown-service-${PPOD_VERSION}
+      labels:
+        ppodServiceKind: "ingress"
+    spec:
+      ports:
+        - port: 9018
+          protocol: TCP
+          targetPort: 9018
+      selector:
+        deploymentconfig: leveldown-${PPOD_VERSION}
+      type: ClusterIP
+
+  - apiVersion: v1
+    kind: Route
+    metadata:
+      name: leveldown-route-${PPOD_DEPLOYMENT_ID}
+    spec:
+      host: ${PPOD_DOMAIN}
+      to:
+        kind: Service
+        name: leveldown-service-${PPOD_VERSION}
+      port:
+        targetPort: 9018

@@ -1,0 +1,17 @@
+C:\Projects\Producer-Kafka-Consumer_practice\ConsumerApplication\src\main\java\ru\cbr\dekart\ma1gus\ConsumerApplication.java
+C:\Projects\Producer-Kafka-Consumer_practice\ConsumerApplication\src\main\java\ru\cbr\dekart\ma1gus\repositories\ReportObjectEntityRepository.java
+C:\Projects\Producer-Kafka-Consumer_practice\ConsumerApplication\src\main\java\ru\cbr\dekart\ma1gus\service\AbstractCertApplication.java
+C:\Projects\Producer-Kafka-Consumer_practice\ConsumerApplication\src\main\java\ru\cbr\dekart\ma1gus\service\JsonOrStringService.java
+C:\Projects\Producer-Kafka-Consumer_practice\ConsumerApplication\src\main\java\ru\cbr\dekart\ma1gus\service\ReportObjectEntityService.java
+C:\Projects\Producer-Kafka-Consumer_practice\ConsumerApplication\src\main\java\ru\cbr\dekart\ma1gus\exceptions\ApplicationException.java
+C:\Projects\Producer-Kafka-Consumer_practice\ConsumerApplication\src\main\java\ru\cbr\dekart\ma1gus\configs\kafka\KafkaConfiguration.java
+C:\Projects\Producer-Kafka-Consumer_practice\ConsumerApplication\src\main\java\ru\cbr\dekart\ma1gus\repositories\JsonOrStringRepository.java
+C:\Projects\Producer-Kafka-Consumer_practice\ConsumerApplication\src\main\java\ru\cbr\dekart\ma1gus\exceptions\ErrorType.java
+C:\Projects\Producer-Kafka-Consumer_practice\ConsumerApplication\src\main\java\ru\cbr\dekart\ma1gus\models\ReportObjectEntity.java
+C:\Projects\Producer-Kafka-Consumer_practice\ConsumerApplication\src\main\java\ru\cbr\dekart\objects\ReportObject.java
+C:\Projects\Producer-Kafka-Consumer_practice\ConsumerApplication\src\main\java\ru\cbr\dekart\ma1gus\listeners\MainListener.java
+C:\Projects\Producer-Kafka-Consumer_practice\ConsumerApplication\src\main\java\ru\cbr\dekart\ma1gus\utils\JSONUtils.java
+C:\Projects\Producer-Kafka-Consumer_practice\ConsumerApplication\src\main\java\ru\cbr\dekart\ma1gus\service\ManageTopicService.java
+C:\Projects\Producer-Kafka-Consumer_practice\ConsumerApplication\src\main\java\ru\cbr\dekart\ma1gus\service\MonitoringService.java
+C:\Projects\Producer-Kafka-Consumer_practice\ConsumerApplication\src\main\java\ru\cbr\dekart\ma1gus\service\SenderService.java
+C:\Projects\Producer-Kafka-Consumer_practice\ConsumerApplication\src\main\java\ru\cbr\dekart\ma1gus\models\JsonOrStringEntity.java

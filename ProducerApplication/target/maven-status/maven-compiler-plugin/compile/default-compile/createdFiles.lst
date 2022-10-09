@@ -1,0 +1,11 @@
+ru\cbr\dekart\ma1gus\services\ParseOESForReportObjectService.class
+ru\cbr\dekart\ma1gus\services\SenderService$1.class
+ru\cbr\dekart\ma1gus\services\XMLService.class
+ru\cbr\dekart\objects\ReportObject.class
+ru\cbr\dekart\ma1gus\models\F0000001field.class
+ru\cbr\dekart\ma1gus\config\KafkaConfiguration.class
+ru\cbr\dekart\ma1gus\controllers\F0000001Controller.class
+ru\cbr\dekart\ma1gus\controllers\ReportObjectController.class
+ru\cbr\dekart\ma1gus\ProducerApplication.class
+ru\cbr\dekart\ma1gus\config\KafkaConfiguration$1.class
+ru\cbr\dekart\ma1gus\services\SenderService.class
